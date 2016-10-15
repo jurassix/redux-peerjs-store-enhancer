@@ -1,7 +1,7 @@
 import {applyMiddleware} from 'redux';
+import actionEnhancerMiddleware from 'redux-action-enhancer-middleware';
 import peerReducerEnhancer from './peerReducerEnhancer';
 import peerPreloadedStateEnhancer from './peerPreloadedStateEnhancer';
-import actionEnhancerMiddleware from './actionEnhancerMiddleware';
 import {ignorePeerActions, peerMetadataEnhancer, peerReplicateActionEnhancer} from './peerActionEnhancers';
 
 export default function peerStoreEnhancer() {
