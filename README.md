@@ -1,2 +1,2 @@
 # redux-peerjs-store-enhancer
-Use PeerJS to easily distribute Redux actions to remote peers.
+Redux PeerJs Enhancer to transmit actions to remote peers.
