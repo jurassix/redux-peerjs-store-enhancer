@@ -1,8 +1,8 @@
 import {applyMiddleware} from 'redux';
 import actionEnhancerMiddleware from 'redux-action-enhancer-middleware';
-import peerReducerEnhancer from './peerReducerEnhancer';
-import peerPreloadedStateEnhancer from './peerPreloadedStateEnhancer';
-import {ignorePeerActions, peerMetadataEnhancer, peerReplicateActionEnhancer} from './peerActionEnhancers';
+import peerReducerEnhancer from './enhancers/peerReducerEnhancer';
+import peerPreloadedStateEnhancer from './enhancers/peerPreloadedStateEnhancer';
+import {ignorePeerActions, peerMetadataEnhancer, peerReplicateActionEnhancer} from './enhancers/peerActionEnhancers';
 
 export default function peerStoreEnhancer() {
   return (createStore) => (reducer, preloadedState) => {
@@ -20,10 +20,6 @@ export default function peerStoreEnhancer() {
         })
       );
 
-    // the following line breaks redux-devtools; hypothesis is the above applyMiddleware calls from inside a store enhancer
-    // return createStore(enhancedReducer, enhancedPreloadedState, peerEnhancer);
-
-    // this works for all cases
     return peerEnhancer(createStore)(enhancedReducer, enhancedPreloadedState);
   }
 }
