@@ -4,11 +4,9 @@ import {send} from '../peer/peerAPI';
 export const ignorePeerActions = ({type = ''}) => type.indexOf('@@PEER') !== 0;
 
 export const peerMetadataEnhancer = (dispatch, getState, action) => {
-  const { peerId } = action['@@PEER_META'];
-  if (peerId) {
-    return action;
-  }
-  const {peer} = getState();
+  const meta = action['@@PEER_META'];
+  if (meta && meta.peerid) return action;
+  const { peer } = getState();
   return {
     ...action,
     '@@PEER_META': {
@@ -21,8 +19,8 @@ export const peerMetadataEnhancer = (dispatch, getState, action) => {
 
 export const peerReplicateActionEnhancer = (dispatch, getState, action) => {
   const {peer} = getState();
-  const {peerId} = action['@@PEER_META'];
-  if (peer.id === peerId) {
+  const meta = action['@@PEER_META'];
+  if (meta && meta.peerId && (peer.id === meta.peerId)) {
     send(peer)(action)
   }
   return action;
