@@ -1,6 +1,6 @@
 {
   "name": "redux-peerjs-store-enhancer",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Redux PeerJs Enhancer to transmit actions to remote peers.",
   "main": "./lib/peerStoreEnhancer.js",
   "dependencies": {
